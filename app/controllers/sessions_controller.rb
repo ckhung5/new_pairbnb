@@ -18,7 +18,7 @@ class SessionsController < Clearance::SessionsController
   end
 
   def create
-    byebug
+    
     @user = authenticate(params)
 
    

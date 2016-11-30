@@ -20,19 +20,22 @@
 
 
 
-
-
-
+<div id="sidebar">
 <form  action=listings_filter method="get">
 
 Minimum:
   <input name="min_price" type="number" placeholder="0" min="0" value="0" />
 Maximum:
   <input name="max_price" type="number" placeholder="0" min="0" />
-  <input type="submit" name="search" value="Search">
+  <input type="hidden" name="location" value="<%=@address %>">
+  <input type="submit" name="search" value="Apply Filter">
 </form>
-
+</div>
 
 
 
 <%= will_paginate @listings %>
+
+
+
+

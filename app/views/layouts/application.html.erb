@@ -5,7 +5,6 @@
   
   <title>PairbnbNew</title>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="https://js.braintreegateway.com/v2/braintree.js"></script>
   <%= include_gon %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -13,41 +12,53 @@
   <%= csrf_meta_tags %>
 
 </head>
+
 <body>
-    <%= link_to 'Home', welcome_path %>
 
-    <% if signed_in? %>
-      Signed in as: <%= current_user.email %>
-      <%= button_to 'Sign out', sign_out_path, method: :delete %>
-
-      <%= link_to 'New_List?', new_listing_path %>
-    
-      <%= link_to 'Profile', user_path(current_user) %>
-      <%= link_to 'Listings', listings_path %>
-      <% if !current_user.admin? %>
-      <%= link_to 'My reservation', listing_reservations_path(current_user.id) %>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/welcome">Pairbnb</a>
+    </div>
       
-      <%= form_tag listings_search_path do %>
+        <% if signed_in? %>
+        <ul class="nav navbar-nav">
+          <% if !current_user.admin? %>
+              <%= form_tag listings_search_path, :class => "navbar-form navbar-left" do %>
+                <div class="form-group">
+                  <%= text_field_tag "listing[search]", nil ,placeholder: "location", :class=>"form-control" %>
+                  <%= submit_tag "Search"%>
+                </div>
+              <%end%>
+
+              <li><%= link_to 'My reservation', listing_reservations_path(current_user.id) %></li>
+          <% end %>
+
+          <li><%= link_to 'New_List?', new_listing_path %></li>
+          <li><%= link_to 'Profile', user_path(current_user) %></li>
+          <li><%= link_to 'Listings', listings_path %></li>
+        </ul>
       
-        <div class="text-field">
-          <%= label_tag "Search" %>
-          <%= text_field_tag "listing[search]", nil ,placeholder: "location" %>
-        </div>
 
-        <div class="submit-field">
-          <%= submit_tag "Search"%>
-        </div>
+      
+        <ul class="nav navbar-nav navbar-right">
+         <li class="navbar-text"><font color="white"><%= current_user.email %></font></li>
+         <li class="navbar-btn"><%= button_to 'Sign out', sign_out_path, method: :delete %></li>
+        </ul>
 
-        <%end%>
-    <% end %>
+      
+      <% else %>
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to 'Sign in', sign_in_path %></li>
+      </ul>
+       
+      <% end %>
 
 
-    <% else %>
-      <%= link_to 'Sign in', sign_in_path %>
-    <% end %>
 
     
-
+  </div>
+</nav>
 
     <div id="flash">
       <% flash.each do |key, value| %>
