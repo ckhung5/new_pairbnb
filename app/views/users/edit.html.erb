@@ -1,0 +1,26 @@
+
+
+<%= form_for :user , url: user_path do |form| %>
+<input type="hidden" name="_method" value="put">
+ <div class="text-field">
+
+    <%= form.label :email %>
+    <%= form.text_field :email, type: 'email', value: current_user.email %>
+  </div>
+
+   <div class="text-field">
+    <%= form.label :name %>
+    <%= form.text_field :name, type: 'name', value: current_user.name %>
+  </div>
+
+  <p>
+    <%= form.file_field :image %>
+  </p>
+
+   <%= form.radio_button :status, 'tenant' %> 
+  <%= label :status_tenant, 'Tenant' %>
+  <%= form.radio_button :status, 'host' %>
+  <%= label :status_host, 'Host' %>
+  <p><%= form.submit %></p>
+<% end %>
+

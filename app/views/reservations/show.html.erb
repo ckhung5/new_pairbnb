@@ -1,0 +1,34 @@
+<h1>This Reservation</h1>
+
+
+<% if @reservation.nil?%>
+<% No reservation %>
+<%else%>
+  <table>
+     <tr>
+       <th>Description</th>
+       <th>Address</th>
+       <th>Price</th>
+       <th>Start Date</th>
+       <th>End Date</th>
+     </tr>
+     <tr>
+        <td><%=@reservation.listing.description %></td>
+        <td><%=@reservation.listing.address %></td>
+        <td><%=@reservation.listing.price %></td>
+        <td><%=@reservation.start_date %></td>
+        <td><%=@reservation.end_date %></td>
+     </tr>  
+  </table>
+
+  <%= button_to "Cancel Reservation", listing_reservation_path(@reservation.listing.id,@reservation.id) , method: :delete %>
+
+  <%if @reservation.book == false %>
+  <p>Please pay below </p>
+
+  <%= render partial:  '/transactions/form' %>
+  <%else%>
+  <p>You have paid</p>
+  <%end%>
+
+<% end -%>

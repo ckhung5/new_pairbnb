@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  
+  <title>PairbnbNew</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://js.braintreegateway.com/v2/braintree.js"></script>
+  <%= include_gon %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+</head>
+<body>
+    <%= link_to 'Home', welcome_path %>
+
+    <% if signed_in? %>
+      Signed in as: <%= current_user.email %>
+      <%= button_to 'Sign out', sign_out_path, method: :delete %>
+
+      <%= link_to 'New_List?', new_listing_path %>
+    
+      <%= link_to 'Profile', user_path(current_user) %>
+      <%= link_to 'Listings', listings_path %>
+      <% if !current_user.admin? %>
+      <%= link_to 'My reservation', listing_reservations_path(current_user.id) %>
+      
+      <%= form_tag listings_search_path do %>
+      
+        <div class="text-field">
+          <%= label_tag "Search" %>
+          <%= text_field_tag "listing[search]", nil ,placeholder: "location" %>
+        </div>
+
+        <div class="submit-field">
+          <%= submit_tag "Search"%>
+        </div>
+
+        <%end%>
+    <% end %>
+
+
+    <% else %>
+      <%= link_to 'Sign in', sign_in_path %>
+    <% end %>
+
+    
+
+
+    <div id="flash">
+      <% flash.each do |key, value| %>
+        <div class="flash <%= key %>"><%= value %></div>
+      <% end %>
+    </div>
+
+<%= yield %>
+
+</body>
+</html>
+
+
+
+

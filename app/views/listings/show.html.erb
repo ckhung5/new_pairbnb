@@ -1,0 +1,27 @@
+<h1>List Details</h1>
+
+  <% if @listing.nil? %>
+    <%else %>
+    <p>Description : <%=@listing.description%></p>
+    <p>Address : <%=@listing.address%></p>
+    <p>Price : <%=@listing.price%></p>
+    <p>by : <%=@listing.user.name%></p>
+    <% if @listing.user_id == current_user.id || current_user.status == "admin" %>
+        <p><%= button_to 'Click Here To Edit', edit_listing_path, method: :get %></p>
+        <p><%= button_to 'Click Here To Delete', listing_path(@listing.id), method: :delete %></p>
+          
+              <% if @listing.photoes.nil? %>
+              <p>Please upload some photoes</p>
+              <%else %>
+                  <% @listing.photoes.each do |photo| %>     
+                  <p><%= image_tag photo.url %></p>
+                <% end -%>
+   
+              <% end -%>
+    <p><%= link_to 'Click Here To Upload Photos', upload_path %></p>
+    <% else %>
+    <%= link_to 'Click Here to book', new_listing_reservation_path(@listing.id) %>   
+     <% end -%>
+
+  <% end -%>
+  

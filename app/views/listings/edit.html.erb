@@ -1,0 +1,24 @@
+<h1>Edit list</h1>
+
+
+<%= form_for :listing, url: listing_path do |form| %>
+  <input type="hidden" name="_method" value="put">
+  <div class="text-field">
+    <%= form.label :Description %>
+    <%= form.text_field :description, type: 'string', value: @listing.description %>
+  </div>
+
+   <div class="text-field">
+    <%= form.label :address %>
+    <%= form.text_field :address, type: 'string', value: @listing.address %>
+  </div>
+
+   <div class="text-field">
+    <%= form.label :price %>
+    <%= form.text_field :price, type: 'string', value: @listing.price %>
+  </div>
+
+  <div class="submit-field">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,14 @@
+<h1>Please choose either host or tenant</h1>
+
+
+<%= form_for :user, url: user_path(current_user.id) do |form| %>
+  <input type="hidden" name="_method" value="put">
+ <%= form.radio_button :status, 'tenant' %> 
+  <%= label :status_tenant, 'Tenant' %>
+  <%= form.radio_button :status, 'host' %>
+  <%= label :status_host, 'Host' %>
+
+  <div class="submit-field">
+    <%= form.submit %>
+  </div>
+<% end %>

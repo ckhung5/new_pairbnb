@@ -1,0 +1,104 @@
+
+<% if current_user.tenant? && !current_user.admin? %>
+  <h1>Your Reservations</h1>
+
+   <% if current_user.reservations.empty?%>
+   <p>You dont have reservation</p>
+   <%else%>
+   <table>
+     <tr>
+       <th>Description</th>
+       <th>Address</th>
+       <th>Price</th>
+       <th>Start Date</th>
+       <th>End Date</th>
+       <th>Host Name</th>
+       <th>Reservation code</th>
+     </tr>
+      <%current_user.reservations.each do |reservation|%>
+        <tr>
+          <td><%=reservation.listing.description%></td>
+          <td><%=reservation.listing.address%></td>
+          <td><%=reservation.listing.price%></td>
+          <td><%=reservation.start_date%></td>
+          <td><%=reservation.end_date%></td>
+          <td><%=reservation.listing.user.name%></td>
+          <td><%= link_to "Click here for details", listing_reservation_path(reservation.listing_id,reservation.id) %></td>
+        </tr>
+      <%end%>
+    </table>
+    <%end%>
+<%else%>
+<%end%>
+
+
+
+<% if current_user.host? && !current_user.admin? %>
+<h1>Property Being Reserved</h1>
+
+  <% if @listings.empty?%>
+  <p>There is no list.</p>
+  <%else%>
+   
+      <%@listings.each do |listing|%>
+
+              <% if listing.reservations.empty? %>
+                <p>There is no reservation on this list.</p>
+
+               <% else %> 
+                  <table>
+                   <tr>
+                     <th>Description</th>
+                     <th>Address</th>
+                     <th>Price</th>
+                     <th>Start Date</th>
+                     <th>End Date</th>
+                     <th>Host Name</th>
+                     <th>Reservation code</th>
+                     
+                   </tr>
+                  <%listing.reservations.each do |reservation|%>
+                  <tr>     
+                    <td><%=reservation.listing.description%></td>
+                    <td><%=reservation.listing.address%></td>
+                    <td><%=reservation.listing.price%></td>
+                    <td><%=reservation.start_date%></td>
+                    <td><%=reservation.end_date%></td>
+                    <td><%=reservation.user.name%></td>
+                    <td><%= link_to "Click here for details", listing_reservation_path(reservation.listing_id,reservation.id) %></td>
+                  </tr> 
+              <%end%>   
+          <%end%>
+      <%end%>
+    </table>
+  <%end%>
+
+ <h1>Your Reservations</h1>
+    <% if current_user.reservations.empty?%>
+    <p>You dont have reservation</p>
+    <%else%>
+       <table>
+         <tr>
+           <th>Description</th>
+           <th>Address</th>
+           <th>Price</th>
+           <th>Start Date</th>
+           <th>End Date</th>
+           <th>Host Name</th>
+           <th>Reservation code</th>
+         </tr>
+        <%current_user.reservations.each do |reservation|%>
+          <tr>
+            <td><%=reservation.listing.description%></td>
+            <td><%=reservation.listing.address%></td>
+            <td><%=reservation.listing.price%></td>
+            <td><%=reservation.start_date%></td>
+            <td><%=reservation.end_date%></td>
+            <td><%=reservation.listing.user.name%></td>
+            <td><%= link_to "Click here for details", listing_reservation_path(reservation.listing_id,reservation.id) %></td>
+          </tr>  
+        <%end%>
+       <table>
+    <%end%>
+<%else%>
+<%end%>

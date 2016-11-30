@@ -1,0 +1,29 @@
+<h1>User details</h1>
+
+
+ <% if @user.nil? %>
+  <p>No such user</p>
+ <%else%>
+ <p>Name: <%=@user.name%></p>
+
+  <p><%= image_tag @user.image_url.to_s %></p>
+ <p>Email: <%=@user.email%></p>
+  <p>Authorization: <%=@user.status%></p>
+  <p><%= button_to "Click here to edit a profile", edit_user_path, method: :get %></p>
+ <p>Listings</p>
+    <% count = 1 %>
+   <% @user.listings.each do |listing| %>
+     <p><%= link_to "List" + "#{count}", listing_path(listing) %></p>
+     <p>Description:<%=listing.description%></p>
+     <p>Address:<%=listing.address%></p>
+     <p>Price:<%=listing.price%></p>
+     <% if current_user.id == @user.id || current_user.status == "admin" %>
+     <p><%= button_to 'Click Here To Delete', listing_path(listing.id), method: :delete %></p><br>
+      <% end -%>
+    <% count += 1 %>
+   <% end -%>
+  <% end -%>
+ 
+   
+
+ 

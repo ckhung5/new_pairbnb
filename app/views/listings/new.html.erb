@@ -1,0 +1,36 @@
+<h1>Create your new list here</h1>
+
+<%= form_for :listing, url: listings_path do |form| %>
+  <div class="text-field">
+    <%= form.label :description %>
+    <%= form.text_field :description, type: 'string' %>
+  </div>
+
+   <div class="text-field">
+    <%= form.label :address %>
+    <%= form.text_field :address, type: 'text' %>
+  </div>
+
+   <div class="text-field">
+    <%= form.label :price %>
+    <%= form.text_field :price, type: 'string' %>
+  </div>
+
+   <div class="text-field">
+    <%= form.hidden_field :user_id, value: current_user.id %>
+  </div>
+<!-- 
+  <div class="password-field">
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+  </div> -->
+
+
+  <div class="submit-field">
+    <%= form.submit %>
+  </div>
+
+
+
+ 
+<% end %>

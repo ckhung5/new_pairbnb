@@ -1,0 +1,54 @@
+<h1>New Reservation</h1>
+
+
+<h3>Not avaiable dates</h3>
+  <% if @listing.reservations.nil? %>
+  <p>There are no reservation</p>
+  <% else %>
+  <% count = 1 %>
+  <table>
+  <tr>
+   <th>No</th>
+   <th>Start Date</th>
+   <th>End Date</th>
+
+  </tr>
+    <% @listing.reservations.each do |reservations| %>
+    <tr>
+     
+      <td><%= count %></td>
+      <td><%=reservations.start_date %></td>
+    
+   
+      <td><%=reservations.end_date %></td>
+      <% count += 1 %>
+    </tr>  
+    <% end -%>
+  <% end -%>
+</table>
+
+
+<br><p>Please key in your preferred date</p>
+<%= form_for :reservation, url: listing_reservations_path(@listing.id) do |form| %>
+  <div class="text-field">
+    <%= form.label :start_date %>
+    <%= form.date_field :start_date, type: 'date' , value: "yyyy-mm-dd" %>
+  </div>
+
+   <div class="text-field">
+    <%= form.label :end_date %>
+    <%= form.date_field :end_date, type: 'date', value: "yyyy-mm-dd" %>
+  </div>
+
+   <div class="text-field">
+    <%= form.hidden_field :listing_id, value: @listing.id %>
+  </div>
+
+  <div class="submit-field">
+    <%= form.submit %>
+  </div>
+
+
+
+ 
+<% end %>

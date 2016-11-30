@@ -1,0 +1,38 @@
+<h1>Whole list</h1>
+
+<% if @listings.empty? %>
+  <p>There are no list</p>
+  <%else%>
+  <% count = 1 %>
+  <% @listings.each do |listing| %>
+    <%if listing.user.nil? %>
+      <p>no listing</p>
+    <%else%>
+      <p><%= link_to "List" + "#{count}", listing_path(listing) %></p>
+      <p> Description : <%=listing.description %> </p>
+      <p> Address : <%=listing.address %> </p>
+      <p> Price : <%=listing.price %> </p>
+      <p>Username: <%= link_to listing.user.name, user_path(listing.user) %></p>
+    <% end -%>
+    <% count += 1 %>
+    <% end -%>
+<% end -%>
+
+
+
+
+
+
+<form  action=listings_filter method="get">
+
+Minimum:
+  <input name="min_price" type="number" placeholder="0" min="0" value="0" />
+Maximum:
+  <input name="max_price" type="number" placeholder="0" min="0" />
+  <input type="submit" name="search" value="Search">
+</form>
+
+
+
+
+<%= will_paginate @listings %>
