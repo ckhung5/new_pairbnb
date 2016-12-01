@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"
   get "/sign_up" => "clearance/users#new", as: "sign_up"
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
-  get "/" => "welcome#index", as: "welcome"
+  get "/welcome" => "welcome#index", as: "welcome"
   get "/listings/:id/upload" => "listings#upload", as: "upload"
   post "/listings/:id/submit_upload" => "listings#submit_upload", as: "submit_upload"
   delete "/listings/:id/photo_delete" => "listings#photo_delete", as: "photo_delete"
