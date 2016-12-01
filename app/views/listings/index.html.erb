@@ -19,12 +19,8 @@
 <% end -%>
 
 
-
-
-
-
 <form  action=listings_filter method="get">
-
+<input type="hidden" name="address" value="<%=@location%>">
 Minimum:
   <input name="min_price" type="number" placeholder="0" min="0" value="0" />
 Maximum:
