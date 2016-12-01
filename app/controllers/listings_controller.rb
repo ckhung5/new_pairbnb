@@ -85,14 +85,23 @@ class ListingsController < ApplicationController
 
   def search
     @listings = Listing.search(params[:listing][:search]).paginate(:page => params[:page], :per_page => 10)
+<<<<<<< HEAD
     @location  = params[:listing][:search]
+=======
+    @address = params[:listing][:search]
+>>>>>>> bootstrap
     render "/listings/index"
   end
 
   def filter
-    
-    @listings = Listing.where("price >= ? AND price <= ? ",params[:min_price].to_i,params[:max_price].to_i).order("price ASC").paginate(:page => params[:page], :per_page => 10)
 
+    
+    if params[:location].empty?
+      @listings = Listing.where("price >= ? AND price <= ? ",params[:min_price].to_i,params[:max_price].to_i).order("price ASC").paginate(:page => params[:page], :per_page => 10)
+    else
+    
+    @listings = Listing.where("price >= ? AND price <= ? AND address = ? ",params[:min_price].to_i,params[:max_price].to_i,params[:location].capitalize).order("price ASC").paginate(:page => params[:page], :per_page => 10)
+    end
    
     render "/listings/index"
   end
