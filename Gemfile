@@ -68,7 +68,7 @@ end
  group :production do
   gem 'rails_12factor'
   gem 'unicorn'
-  
+  gem 'redis'
   gem "skylight"
 end
 
