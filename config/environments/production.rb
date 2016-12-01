@@ -87,7 +87,7 @@ config.active_job.queue_name_delimiter = "_"
 config.action_mailer.smtp_settings = {
   address:              'smtp.gmail.com',
   port:                 587,
-  domain:               'localhost:3000',
+  domain:               'https://kh-pairbnb.herokuapp.com/',
   user_name:            ENV['GMAIL_KEY'],
   password:             ENV['GMAIL_SECRET'],
   authentication:       'plain',
