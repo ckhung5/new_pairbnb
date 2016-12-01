@@ -85,11 +85,8 @@ class ListingsController < ApplicationController
 
   def search
     @listings = Listing.search(params[:listing][:search]).paginate(:page => params[:page], :per_page => 10)
-<<<<<<< HEAD
-    @location  = params[:listing][:search]
-=======
+
     @address = params[:listing][:search]
->>>>>>> bootstrap
     render "/listings/index"
   end
 
