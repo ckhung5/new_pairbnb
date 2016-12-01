@@ -61,12 +61,14 @@ end
   gem 'omniauth-facebook'
   gem 'sidekiq'
   gem 'redis-namespace'
- gem 'braintree', '~> 2.33.1'
- gem 'gon', '~> 5.1.2'
- gem 'pg_search'
- gem 'rails_12factor'
-  gem 'unicorn'
+   gem 'braintree', '~> 2.33.1'
+   gem 'gon', '~> 5.1.2'
+   gem 'pg_search'
   gem 'rack-timeout'
+ group :production do
+  gem 'rails_12factor'
+  gem 'unicorn'
+  
   gem "skylight"
-
+end
 
