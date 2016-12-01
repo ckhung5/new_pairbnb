@@ -5,6 +5,7 @@ class ReservationMailer < ApplicationMailer
     @customer = customer
     @host = host 
     @reservation_id = reservation_id
+    # byebug
     mail(to: @customer.email, subject:"Booking Succeed")
 
 

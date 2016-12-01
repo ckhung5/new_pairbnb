@@ -1,6 +1,3 @@
-web: bundle exec rails server -p $PORT
-
-worker:  bundle exec redis-server
-
-worker:  bundle exec sidekiq
-
+worker: bundle exec sidekiq -C config/sidekiq.yml
+web: bundle exec rails server
+ 

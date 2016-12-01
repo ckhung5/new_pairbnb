@@ -4,7 +4,7 @@ class ReservationJob < ActiveJob::Base
   def perform(customer, host,reservation_id)
 
     # Do something later
-
+    # byebug
      ReservationMailer.booking_email(customer, host,reservation_id).deliver_now
   end
 end

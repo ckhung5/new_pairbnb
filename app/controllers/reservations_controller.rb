@@ -22,13 +22,14 @@ class ReservationsController < ApplicationController
       reservation.end_date = params[:reservation][:end_date]
       # byebug
       if reservation.save
+        puts "h222222ehe==================================================="
       ReservationMailer.booking_email(current_user,listing.user,reservation.id).deliver_later
       # ReservationJob.perform_later(current_user,listing.user,reservation.id).deliver_later
       redirect_to listing_reservation_path(listing.id,reservation.id)
       # redirect_to new_transaction_path
 
       else
-  
+     puts "hehe==================================================="
       # flash.now.notice = "Invalid date"
       redirect_to new_listing_reservation_path(params[:listing_id])
       end
