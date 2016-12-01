@@ -65,5 +65,7 @@ end
  gem 'gon', '~> 5.1.2'
  gem 'pg_search'
  gem 'rails_12factor'
+  gem 'unicorn'
+  gem 'rack-timeout'
 
 
