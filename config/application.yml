@@ -20,7 +20,4 @@
   BRAINTREE_PUBLIC_KEY: '9czbsrcw763b33dp'
   BRAINTREE_PRIVATE_KEY: 'd30a57124af1b80ebe3b2d8443cb33ea'
   REDIS_URL: 'redis://localhost:6379/0'
-  PATH: 'localhost:3000'
-
- production:
-  PATH: 'https://kh-pairbnb.herokuapp.com/'
+  
