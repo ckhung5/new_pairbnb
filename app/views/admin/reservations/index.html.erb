@@ -13,12 +13,13 @@
       </tr>
       <%@reservations.each do |reservation|%>
       <tr>
-      <td>Description: <%reservation.listing.description%></td>
-      <td>Address: <%reservation.listing.address%></td>
-      <td>Price: <%reservation.listing.price%></td>
+      <% reserved_listing = reservation.listing%>
+      <td>Description: <%reserved_listing.description%></td>
+      <td>Address: <%reserved_listing.address%></td>
+      <td>Price: <%reserved_listing.price%></td>
       <td>Start Date: <%reservation.start_date%></td>
       <td>End Date: <%reservation.end_date%></td>
-      <td>Host Name: <%reservation.listing.user.name%></td>
+      <td>Host Name: <%reserved_listing.user.name%></td>
       <td>Reservation code:<%= link_to reservation.id, reservation_path %></td>
       </tr>
       <%end%>

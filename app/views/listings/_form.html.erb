@@ -1,5 +1,5 @@
 <%= form_for :listing ,url: submit_upload_path do |form| %>
-
+    
     <%  @new_listing.photoes.each do |photo| %>
    
     <p><%= image_tag photo.url %></p>

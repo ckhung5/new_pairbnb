@@ -12,7 +12,8 @@
       <p> Description : <%=listing.description %> </p>
       <p> Address : <%=listing.address %> </p>
       <p> Price : <%=listing.price %> </p>
-      <p>Username: <%= link_to listing.user.name, user_path(listing.user) %></p>
+      <%user_object = listing.user %>
+      <p>Username: <%= link_to user_object.name, user_path(listing.user) %></p>
     <% end -%>
     <% count += 1 %>
     <% end -%>

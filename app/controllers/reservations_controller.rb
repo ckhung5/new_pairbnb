@@ -15,11 +15,11 @@ class ReservationsController < ApplicationController
       listing = Listing.find(params[:listing_id])
     
 
-      reservation = Reservation.new
-      reservation.user_id = current_user.id
-      reservation.listing_id = params[:reservation][:listing_id]
-      reservation.start_date = params[:reservation][:start_date]
-      reservation.end_date = params[:reservation][:end_date]
+      reservation = Reservation.new(user_id: current_user.id, listing_id: params[:reservation][:listing_id], start_date: params[:reservation][:start_date],end_date: params[:reservation][:end_date] )
+      # reservation.user_id = current_user.id
+      # reservation.listing_id = params[:reservation][:listing_id]
+      # reservation.start_date = params[:reservation][:start_date]
+      # reservation.end_date = params[:reservation][:end_date]
       # byebug
       if reservation.save
       

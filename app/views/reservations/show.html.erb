@@ -4,6 +4,7 @@
 <% if @reservation.nil?%>
 <% No reservation %>
 <%else%>
+  <% reserved_listing = @reservation.listing %>
   <table>
      <tr>
        <th>Description</th>
@@ -13,9 +14,10 @@
        <th>End Date</th>
      </tr>
      <tr>
-        <td><%=@reservation.listing.description %></td>
-        <td><%=@reservation.listing.address %></td>
-        <td><%=@reservation.listing.price %></td>
+
+        <td><%=reserved_listing.description %></td>
+        <td><%=reserved_listing.address %></td>
+        <td><%=reserved_listing.price %></td>
         <td><%=@reservation.start_date %></td>
         <td><%=@reservation.end_date %></td>
      </tr>  

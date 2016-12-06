@@ -13,16 +13,17 @@
        <th>Start Date</th>
        <th>End Date</th>
        <th>Host Name</th>
-       <th>Reservation code</th>
+       <th>Reservationsvation code</th>
      </tr>
       <%current_user.reservations.each do |reservation|%>
         <tr>
-          <td><%=reservation.listing.description%></td>
-          <td><%=reservation.listing.address%></td>
-          <td><%=reservation.listing.price%></td>
+          <% reserved_listing = reservation.listing%>
+          <td><%=reserved_listing.description%></td>
+          <td><%=reserved_listing.address%></td>
+          <td><%=reserved_listing.price%></td>
           <td><%=reservation.start_date%></td>
           <td><%=reservation.end_date%></td>
-          <td><%=reservation.listing.user.name%></td>
+          <td><%=reserved_listing.user.name%></td>
           <td><%= link_to "Click here for details", listing_reservation_path(reservation.listing_id,reservation.id) %></td>
         </tr>
       <%end%>
@@ -58,13 +59,15 @@
                      
                    </tr>
                   <%listing.reservations.each do |reservation|%>
-                  <tr>     
-                    <td><%=reservation.listing.description%></td>
-                    <td><%=reservation.listing.address%></td>
-                    <td><%=reservation.listing.price%></td>
+                  <tr>
+                    <% reserved_listing = reservation.listing%>     
+                    <td><%=reserved_listing.description%></td>
+                    <td><%=reserved_listing.address%></td>
+                    <td><%=reserved_listing.price%></td>
                     <td><%=reservation.start_date%></td>
                     <td><%=reservation.end_date%></td>
-                    <td><%=reservation.user.name%></td>
+                    <% reserved_user = reservation.user%>
+                    <td><%=reserved_user.name%></td>
                     <td><%= link_to "Click here for details", listing_reservation_path(reservation.listing_id,reservation.id) %></td>
                   </tr> 
               <%end%>   
@@ -89,12 +92,13 @@
          </tr>
         <%current_user.reservations.each do |reservation|%>
           <tr>
-            <td><%=reservation.listing.description%></td>
-            <td><%=reservation.listing.address%></td>
-            <td><%=reservation.listing.price%></td>
+            <% reserved_listing = reservation.listing%>
+            <td><%=reserved_listing.description%></td>
+            <td><%=reserved_listing.address%></td>
+            <td><%=reserved_listing.price%></td>
             <td><%=reservation.start_date%></td>
             <td><%=reservation.end_date%></td>
-            <td><%=reservation.listing.user.name%></td>
+            <td><%=reserved_listing.user.name%></td>
             <td><%= link_to "Click here for details", listing_reservation_path(reservation.listing_id,reservation.id) %></td>
           </tr>  
         <%end%>

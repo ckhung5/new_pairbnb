@@ -1,5 +1,7 @@
 class ListingsController < ApplicationController
 
+ 
+
   def index
     # byebug
 
@@ -17,17 +19,17 @@ class ListingsController < ApplicationController
 
   def create
     
-    listing = Listing.new
+    listing = Listing.create(params[:listing])
    
-    listing.description = params[:listing][:description]
+    # listing.description = params[:listing][:description]
     
-    listing.address = params[:listing][:address]
+    # listing.address = params[:listing][:address]
     
-    listing.price = params[:listing][:price]
+    # listing.price = params[:listing][:price]
     
-    listing.user_id =  params[:listing][:user_id]
+    # listing.user_id =  params[:listing][:user_id]
     
-    listing.save
+    # listing.save
 
    redirect_to listing
 
@@ -36,9 +38,7 @@ class ListingsController < ApplicationController
 
   def upload
     @new_listing = Listing.find(params[:id])
-    # byebug
-    # params = listing.find(params[:id])
-    # params.require(:listing).permit(:address, :price, :description, {photoes: []})
+
     render "_form"
   end
 
@@ -53,9 +53,7 @@ class ListingsController < ApplicationController
 
 
   def show
-    # byebug
     @listing = Listing.find(params[:id])
-
   end
 
   def edit
@@ -66,10 +64,11 @@ class ListingsController < ApplicationController
     
 
     listing = Listing.find(params[:id])
-    listing.description = params[:listing][:description]
-    listing.address = params[:listing][:address]
-    listing.price = params[:listing][:price]
-    listing.save
+    listing.update(description: params[:listing][:description],address: params[:listing][:address],price: params[:listing][:price])
+    # listing.description = params[:listing][:description]
+    # listing.address = params[:listing][:address]
+    # listing.price = params[:listing][:price]
+    # listing.save
      redirect_to listing
   end
 
@@ -110,6 +109,7 @@ class ListingsController < ApplicationController
     params.require(:listing).permit(:description, :address, :price, :user_id, {photoes: []})
   end
 
+ 
 
 
 end

@@ -41,7 +41,7 @@ class SessionsController < Clearance::SessionsController
   end
 
   def new
-    render template: "sessions/new"
+    render "sessions/new"
   end
 
   private

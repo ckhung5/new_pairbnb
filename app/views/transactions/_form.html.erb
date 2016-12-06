@@ -1,18 +1,12 @@
-
-
-
 <div class="form-container radius-box glassy-bg small-7 small-centered medium-6 large-5 columns">
   <h3 class="mbs">New Transaction</h3>
   <%= form_tag transactions_path do%>
     <p>Please enter your payment details:</p>
     <div id="dropin"></div>
-
     <input type="hidden" name="reservation_id" value="<%=@reservation.id%>">
-    <input type="hidden" name="listing_id" value="<%=@reservation.listing.id%>">
-    <input type="hidden" name="price" value="<%= @reservation.listing.price%>">
-    
-
-  
-    <%=submit_tag "Pay RM" + @reservation.listing.price.to_s, class: "button mt1"  %>
+    <% listing_object = @reservation.listing %>
+    <input type="hidden" name="listing_id" value="<%=listing_object.id%>">
+    <input type="hidden" name="price" value="<%=listing_object.price%>">
+    <%=submit_tag "Pay RM" + listing_object.price.to_s, class: "button mt1"  %>
   <%end%>
 </div>

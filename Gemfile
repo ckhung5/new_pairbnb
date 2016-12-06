@@ -6,7 +6,7 @@ gem 'rails', '4.2.6'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.15'
 # Use SCSS for stylesheets
-gem 'bootstrap-sass', '~> 3.3.6'  
+gem 'bootstrap-sass','~> 3.3.6'
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass','~>3.3.6'
 # Use Uglifier as compressor for JavaScript assets
@@ -43,6 +43,7 @@ gem 'activesupport-json_encoder'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem "rails_best_practices"
 end
 
 group :development do
